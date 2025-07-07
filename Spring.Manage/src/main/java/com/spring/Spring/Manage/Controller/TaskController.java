@@ -26,7 +26,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<taskEntities> gettaskById(int id){
+    public ResponseEntity<taskEntities> gettaskById(@PathVariable int id){
         var taskbyid = taskService.gettaskByid(id);
         if(taskbyid == null){
             ResponseEntity.notFound().build();
@@ -36,7 +36,7 @@ public class TaskController {
 
    @PostMapping("/addTask")
    public ResponseEntity<taskEntities> addTask(@RequestBody DTo body) {
-       taskService.addTask(body.getTitle(), body.getDescription(), body.getDeadline());
-       return ResponseEntity.ok().build();
+       var task = taskService.addTask(body.getTitle(), body.getDescription(), body.getDeadline());
+       return ResponseEntity.ok(task);
    }
 }
