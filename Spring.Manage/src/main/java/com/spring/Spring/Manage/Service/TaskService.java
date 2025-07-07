@@ -11,19 +11,20 @@ public class TaskService {
     private ArrayList<taskEntities> allTask = new ArrayList<>();
 
     int taskid = 1;
-    public void addTask(String title , String description , String deadline){
+    public taskEntities addTask(String title , String description , String deadline){
         taskEntities task = new taskEntities();
         task.setId(taskid);
         task.setTitle(title);
         task.setDescription(description);
-        task.setDeadLine(new Date(deadline));
+        //task.setDeadLine(new Date(deadline));
         allTask.add(task);
         taskid++;
+        return task;
     }
 
-   public ArrayList<taskEntities> getAllTask(){
-        return allTask;
-    }
+       public ArrayList<taskEntities> getAllTask(){
+            return allTask;
+        }
 
     public taskEntities gettaskByid(int id){
         for(taskEntities task : allTask){
